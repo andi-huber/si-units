@@ -41,7 +41,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static tech.units.indriya.NumberAssertions.assertNumberEquals;
 
 import tech.units.indriya.function.PowerOfPiConverter;
 import tech.units.indriya.quantity.Quantities;
@@ -90,7 +89,7 @@ public class AngleTest {
     Quantity<Angle> sut = Quantities.getQuantity(BigDecimal.ONE, NonSI.DEGREE_ANGLE).to(Units.RADIAN);
     assertNotNull(sut);
     assertEquals(Units.RADIAN, sut.getUnit());
-    assertNumberEquals(new BigDecimal("0.01745329251994329576923690768488613"), sut.getValue(), 1E-24);
+    assertNumberEquals(new BigDecimal("0.01745329251994329576923690768488613"), (BigDecimal)sut.getValue(), 1E-24);
   }
 
   @Test
@@ -98,6 +97,10 @@ public class AngleTest {
     Quantity<Angle> sut = Quantities.getQuantity(BigDecimal.ONE, Units.RADIAN).to(NonSI.DEGREE_ANGLE);
     assertNotNull(sut);
     assertEquals(NonSI.DEGREE_ANGLE, sut.getUnit());
-    assertNumberEquals(new BigDecimal("57.2957795130823208767981548141051660"), sut.getValue(), 1E-12);
+    assertNumberEquals(new BigDecimal("57.2957795130823208767981548141051660"), (BigDecimal)sut.getValue(), 1E-12);
+  }
+  
+  private void assertNumberEquals(BigDecimal expected, BigDecimal actual, double delta) {
+      assertTrue(expected.add(actual.negate()).abs().compareTo(BigDecimal.valueOf(delta))<0);
   }
 }

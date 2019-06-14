@@ -31,13 +31,6 @@
 				<version>${ri.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>tech.units</groupId>
-				<artifactId>indriya</artifactId>
-				<type>test-jar</type>
-				<scope>test</scope>
-				<version>${ri.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>si.uom</groupId>
 				<artifactId>si-quantity</artifactId>
 				<version>${si.quantity.version}</version>
@@ -53,13 +46,6 @@
 			<groupId>tech.units</groupId>
 			<artifactId>indriya</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>tech.units</groupId>
-			<artifactId>indriya</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>si.uom</groupId>
 			<artifactId>si-quantity</artifactId>
