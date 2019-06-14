@@ -47,7 +47,7 @@ public class ConverterTest {
     Quantity<Angle> sut = Quantities.getQuantity(1, NonSI.DEGREE_ANGLE).to(Units.RADIAN);
     assertNotNull(sut);
     assertEquals(Units.RADIAN, sut.getUnit());
-    assertEquals(0.017453292519943295d, sut.getValue());
+    assertEquals(0.017453292519943295d, sut.getValue().doubleValue(), 1E-12);
   }
 
   @Test
@@ -55,6 +55,6 @@ public class ConverterTest {
     Quantity<Angle> sut = Quantities.getQuantity(1d, Units.RADIAN).to(NonSI.DEGREE_ANGLE);
     assertNotNull(sut);
     assertEquals(NonSI.DEGREE_ANGLE, sut.getUnit());
-    assertEquals(57.29577951308232d, sut.getValue());
+    assertEquals(57.29577951308232d, sut.getValue().doubleValue(), 1E-12);
   }
 }

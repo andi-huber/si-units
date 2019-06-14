@@ -14,7 +14,6 @@
 	<!-- ======================================================= -->
 	<properties>
 		<!-- Versions -->
-		<jdkVersion>1.8</jdkVersion><!-- Using Indriya now -->
 		<project.build.javaVersion>${jdkVersion}</project.build.javaVersion>
 		<maven.compile.targetLevel>${jdkVersion}</maven.compile.targetLevel>
 		<maven.compile.sourceLevel>${jdkVersion}</maven.compile.sourceLevel>
@@ -32,6 +31,13 @@
 				<version>${ri.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>tech.units</groupId>
+				<artifactId>indriya</artifactId>
+				<type>test-jar</type>
+				<scope>test</scope>
+				<version>${ri.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>si.uom</groupId>
 				<artifactId>si-quantity</artifactId>
 				<version>${si.quantity.version}</version>
@@ -46,6 +52,12 @@
 		<dependency>
 			<groupId>tech.units</groupId>
 			<artifactId>indriya</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>tech.units</groupId>
+			<artifactId>indriya</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
