@@ -84,6 +84,6 @@ public class PrefixTest {
 	@Ignore("Adjust to PowerOfIntConverter")
 	public void testBetweenPrefixes2() {
 		UnitConverter conv = KILO(METRE).getConverterTo(GIGA(METRE));
-		assertEquals(RationalConverter.of(1d, 1000000d), conv);
+		assertEquals(RationalConverter.of(1, 1000000), conv);
 	}
 }
