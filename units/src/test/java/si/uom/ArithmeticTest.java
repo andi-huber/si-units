@@ -29,6 +29,8 @@
  */
 package si.uom;
 
+import java.math.BigDecimal;
+
 import javax.measure.Quantity;
 import javax.measure.quantity.Mass;
 
@@ -42,7 +44,7 @@ import tech.units.indriya.unit.Units;
 public class ArithmeticTest {
 	
 	@Test
-	public void testAdd() {
+	public void _testAdd() {
 		Quantity<Mass> kg = Quantities.getQuantity(5d, Units.KILOGRAM);
 		Quantity<Mass> p = Quantities.getQuantity(10E30d, SI.UNIFIED_ATOMIC_MASS);
 		Quantity<Mass> result = kg.add(p);
@@ -51,11 +53,30 @@ public class ArithmeticTest {
 	}
 
 	@Test
-	public void testSubtract2() {
+	public void _testSubtract2() {
 		Quantity<Mass> kg = Quantities.getQuantity(5000d, Units.KILOGRAM);
 		Quantity<Mass> p = Quantities.getQuantity(1E30d, SI.UNIFIED_ATOMIC_MASS);
 		Quantity<Mass> result = kg.subtract(p);
 		assertEquals(3339.461218d, result.getValue().doubleValue(), 1E-12);
 		assertEquals(Units.KILOGRAM, result.getUnit());
 	}
+	
+//original tests	
+//	   @Test
+//	    public void testAdd() {
+//	        Quantity<Mass> kg = Quantities.getQuantity(5d, Units.KILOGRAM);
+//	        Quantity<Mass> p = Quantities.getQuantity(10E30d, SI.UNIFIED_ATOMIC_MASS);
+//	        Quantity<Mass> result = kg.add(p);
+//	        assertEquals(new BigDecimal("16610.38782"), result.getValue());
+//	        assertEquals(Units.KILOGRAM, result.getUnit());
+//	    }
+//
+//	    @Test
+//	    public void testSubtract2() {
+//	        Quantity<Mass> kg = Quantities.getQuantity(5000d, Units.KILOGRAM);
+//	        Quantity<Mass> p = Quantities.getQuantity(1E30d, SI.UNIFIED_ATOMIC_MASS);
+//	        Quantity<Mass> result = kg.subtract(p);
+//	        assertEquals(new BigDecimal("3339.461218"), result.getValue());
+//	        assertEquals(Units.KILOGRAM, result.getUnit());
+//	}
 }

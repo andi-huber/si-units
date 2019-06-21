@@ -29,14 +29,6 @@
  */
 package si.uom;
 
-import static si.uom.SI.AVOGADRO_CONSTANT_VALUE;
-import static si.uom.SI.ELEMENTARY_CHARGE_VALUE;
-import static tech.units.indriya.AbstractUnit.ONE;
-import static javax.measure.MetricPrefix.CENTI;
-import static javax.measure.MetricPrefix.FEMTO;
-import static javax.measure.MetricPrefix.MEGA;
-import static tech.units.indriya.unit.Units.*;
-
 import javax.measure.Unit;
 import javax.measure.quantity.Acceleration;
 import javax.measure.quantity.AmountOfSubstance;
@@ -63,6 +55,39 @@ import javax.measure.quantity.Speed;
 import javax.measure.quantity.Temperature;
 import javax.measure.quantity.Time;
 
+import static javax.measure.MetricPrefix.CENTI;
+import static javax.measure.MetricPrefix.FEMTO;
+import static javax.measure.MetricPrefix.MEGA;
+import static si.uom.SI.AVOGADRO_CONSTANT_VALUE;
+import static si.uom.SI.ELEMENTARY_CHARGE_VALUE;
+import static tech.units.indriya.AbstractUnit.ONE;
+import static tech.units.indriya.unit.Units.AMPERE;
+import static tech.units.indriya.unit.Units.BECQUEREL;
+import static tech.units.indriya.unit.Units.CANDELA;
+import static tech.units.indriya.unit.Units.COULOMB;
+import static tech.units.indriya.unit.Units.DAY;
+import static tech.units.indriya.unit.Units.GRAM;
+import static tech.units.indriya.unit.Units.GRAY;
+import static tech.units.indriya.unit.Units.HOUR;
+import static tech.units.indriya.unit.Units.JOULE;
+import static tech.units.indriya.unit.Units.KELVIN;
+import static tech.units.indriya.unit.Units.KILOGRAM;
+import static tech.units.indriya.unit.Units.LUX;
+import static tech.units.indriya.unit.Units.METRE;
+import static tech.units.indriya.unit.Units.METRE_PER_SECOND;
+import static tech.units.indriya.unit.Units.METRE_PER_SQUARE_SECOND;
+import static tech.units.indriya.unit.Units.MOLE;
+import static tech.units.indriya.unit.Units.NEWTON;
+import static tech.units.indriya.unit.Units.PASCAL;
+import static tech.units.indriya.unit.Units.RADIAN;
+import static tech.units.indriya.unit.Units.SECOND;
+import static tech.units.indriya.unit.Units.SIEVERT;
+import static tech.units.indriya.unit.Units.SQUARE_METRE;
+import static tech.units.indriya.unit.Units.STERADIAN;
+import static tech.units.indriya.unit.Units.TESLA;
+import static tech.units.indriya.unit.Units.WATT;
+import static tech.units.indriya.unit.Units.WEBER;
+
 import si.uom.quantity.DynamicViscosity;
 import si.uom.quantity.IonizingRadiation;
 import si.uom.quantity.KinematicViscosity;
@@ -74,9 +99,7 @@ import tech.units.indriya.AbstractSystemOfUnits;
 import tech.units.indriya.AbstractUnit;
 import tech.units.indriya.format.SimpleUnitFormat;
 import tech.units.indriya.function.LogConverter;
-import tech.units.indriya.function.PowerOfPiConverter;
 import tech.units.indriya.function.MultiplyConverter;
-import tech.units.indriya.function.RationalConverter;
 import tech.units.indriya.unit.ProductUnit;
 import tech.units.indriya.unit.TransformedUnit;
 
@@ -128,21 +151,21 @@ public class NonSI extends AbstractSystemOfUnits {
      * <code>deg</code>).
      */
     public static final Unit<Angle> DEGREE_ANGLE = addUnit(
-            new TransformedUnit<Angle>(RADIAN, PowerOfPiConverter.of(1).concatenate(new RationalConverter(1, 180))),
+            new TransformedUnit<Angle>(RADIAN, MultiplyConverter.ofPiToThePowerOf(1).concatenate(MultiplyConverter.ofRational(1, 180))),
             "Degree Angle", "deg");
 
     /**
      * An angle unit accepted for use with SI units (standard name <code>'</code>).
      */
     public static final Unit<Angle> MINUTE_ANGLE = addUnit(new TransformedUnit<Angle>(RADIAN,
-            PowerOfPiConverter.of(1).concatenate(new RationalConverter(1, 180 * 60))), "Minute Angle", "'");
+            MultiplyConverter.ofPiToThePowerOf(1).concatenate(MultiplyConverter.ofRational(1, 180 * 60))), "Minute Angle", "'");
 
     /**
      * An angle unit accepted for use with SI units (standard name <code>''</code>).
      */
     public static final Unit<Angle> SECOND_ANGLE = addUnit(
             new TransformedUnit<Angle>(RADIAN,
-                    PowerOfPiConverter.of(1).concatenate(new RationalConverter(1, 180 * 60 * 60))),
+                    MultiplyConverter.ofPiToThePowerOf(1).concatenate(MultiplyConverter.ofRational(1, 180 * 60 * 60))),
             "Second Angle", "''");
 
     /**
@@ -152,7 +175,7 @@ public class NonSI extends AbstractSystemOfUnits {
      * must be obtained by experiment, and is therefore not known exactly.
      */
     public static final Unit<Energy> ELECTRON_VOLT = addUnit(
-            new TransformedUnit<Energy>(JOULE, new MultiplyConverter(1.602176487E-19)), "Electron Volt", "eV");
+            new TransformedUnit<Energy>(JOULE, MultiplyConverter.ofDouble(1.602176487E-19)), "Electron Volt", "eV");
     // CODATA 2006 - http://physics.nist.gov/cuu/Constants/codata.pdf
 
     /**
@@ -162,7 +185,7 @@ public class NonSI extends AbstractSystemOfUnits {
      * obtained by experiment, and is therefore not known exactly.
      */
     public static final Unit<Mass> UNIFIED_ATOMIC_MASS = addUnit(
-            new TransformedUnit<Mass>(KILOGRAM, new MultiplyConverter(1.660538782E-27)), "Unified atomic mass", "u",
+            new TransformedUnit<Mass>(KILOGRAM, MultiplyConverter.ofDouble(1.660538782E-27)), "Unified atomic mass", "u",
             true);
     // CODATA 2006 - http://physics.nist.gov/cuu/Constants/codata.pdf
 
@@ -183,14 +206,14 @@ public class NonSI extends AbstractSystemOfUnits {
      * obtained by experiment, and is therefore not known exactly.
      */
     public static final Unit<Length> ASTRONOMICAL_UNIT = addUnit(
-            new TransformedUnit<Length>(METRE, new MultiplyConverter(149597871000.0)), "Astronomical Unit", "UA");
+            new TransformedUnit<Length>(METRE, MultiplyConverter.ofDouble(149597871000.0)), "Astronomical Unit", "UA");
     // Best estimate source: http://maia.usno.navy.mil/NSFA/CBE.html
 
     /**
      * An angle unit accepted for use with SI units (standard name <code>ha</code>).
      */
     public static final Unit<Area> HECTARE = addUnit(
-            new TransformedUnit<Area>(SQUARE_METRE, new RationalConverter(10000, 1)), "Hectare", "ha");
+            new TransformedUnit<Area>(SQUARE_METRE, MultiplyConverter.ofRational(10000, 1)), "Hectare", "ha");
 
     ///////////////////
     // Dimensionless //
@@ -311,7 +334,7 @@ public class NonSI extends AbstractSystemOfUnits {
     /**
      * A mass unit accepted for use with SI units (standard name <code>t</code>).
      */
-    public static final Unit<Mass> TONNE = addUnit(new TransformedUnit<Mass>(KILOGRAM, new RationalConverter(1000, 1)),
+    public static final Unit<Mass> TONNE = addUnit(new TransformedUnit<Mass>(KILOGRAM, MultiplyConverter.ofRational(1000, 1)),
             "Tonne", "t");
 
     /////////////////////

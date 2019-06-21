@@ -29,12 +29,6 @@
  */
 package si.uom;
 
-import static org.junit.Assert.assertEquals;
-import static javax.measure.MetricPrefix.*;
-import static tech.units.indriya.unit.Units.GRAM;
-import static tech.units.indriya.unit.Units.KILOGRAM;
-import static tech.units.indriya.unit.Units.METRE;
-
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import javax.measure.quantity.Mass;
@@ -42,7 +36,19 @@ import javax.measure.quantity.Mass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tech.units.indriya.function.RationalConverter;
+import static javax.measure.MetricPrefix.GIGA;
+import static javax.measure.MetricPrefix.KILO;
+import static javax.measure.MetricPrefix.MEGA;
+import static javax.measure.MetricPrefix.NANO;
+import static javax.measure.MetricPrefix.PICO;
+import static javax.measure.MetricPrefix.YOTTA;
+import static javax.measure.MetricPrefix.ZETTA;
+import static org.junit.Assert.assertEquals;
+import static tech.units.indriya.unit.Units.GRAM;
+import static tech.units.indriya.unit.Units.KILOGRAM;
+import static tech.units.indriya.unit.Units.METRE;
+
+import tech.units.indriya.function.MultiplyConverter;
 
 /**
  * @author <a href="mailto:werner@uom.si">Werner Keil</a>
@@ -77,13 +83,13 @@ public class PrefixTest {
 	@Ignore("Adjust to PowerOfIntConverter")
 	public void testBetweenPrefixes() {
 		UnitConverter conv = YOTTA(METRE).getConverterTo(ZETTA(METRE));
-		assertEquals(conv, RationalConverter.of(1000, 1));
+		assertEquals(conv, MultiplyConverter.ofRational(1000, 1));
 	}
 
 	@Test
 	@Ignore("Adjust to PowerOfIntConverter")
 	public void testBetweenPrefixes2() {
 		UnitConverter conv = KILO(METRE).getConverterTo(GIGA(METRE));
-		assertEquals(RationalConverter.of(1, 1000000), conv);
+		assertEquals(MultiplyConverter.ofRational(1, 1000000), conv);
 	}
 }

@@ -29,8 +29,7 @@
  */
 package si.uom;
 
-import static tech.units.indriya.AbstractUnit.ONE;
-
+import javax.measure.MetricPrefix;
 import javax.measure.Quantity;
 import javax.measure.Unit;
 import javax.measure.quantity.Acceleration;
@@ -41,12 +40,26 @@ import javax.measure.quantity.Energy;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Mass;
 
-import si.uom.quantity.*;
+import static tech.units.indriya.AbstractUnit.ONE;
+
+import si.uom.quantity.Action;
+import si.uom.quantity.AngularAcceleration;
+import si.uom.quantity.AngularSpeed;
+import si.uom.quantity.DynamicViscosity;
+import si.uom.quantity.ElectricPermittivity;
+import si.uom.quantity.Intensity;
+import si.uom.quantity.IonizingRadiation;
+import si.uom.quantity.KinematicViscosity;
+import si.uom.quantity.Luminance;
+import si.uom.quantity.MagneticFieldStrength;
+import si.uom.quantity.MagneticPermeability;
+import si.uom.quantity.MagnetomotiveForce;
+import si.uom.quantity.Radiance;
+import si.uom.quantity.RadiantIntensity;
+import si.uom.quantity.WaveNumber;
 import tech.units.indriya.AbstractUnit;
 import tech.units.indriya.format.SimpleUnitFormat;
 import tech.units.indriya.function.MultiplyConverter;
-import tech.units.indriya.function.PowerOfPiConverter;
-import tech.units.indriya.function.RationalConverter;
 import tech.units.indriya.unit.AlternateUnit;
 import tech.units.indriya.unit.ProductUnit;
 import tech.units.indriya.unit.TransformedUnit;
@@ -225,7 +238,7 @@ public final class SI extends Units {
      * value must be obtained by experiment, and is therefore not known exactly.
      */
     public static final Unit<Energy> ELECTRON_VOLT = addUnit(
-	    new TransformedUnit<Energy>(JOULE, new MultiplyConverter(1.602176487E-19)));
+	    new TransformedUnit<Energy>(JOULE, MultiplyConverter.ofDouble(1.602176487E-19)));
     // CODATA 2006 - http://physics.nist.gov/cuu/Constants/codata.pdf
 
     /**
@@ -236,7 +249,8 @@ public final class SI extends Units {
      * known exactly.
      */
     public static final Unit<Mass> UNIFIED_ATOMIC_MASS = addUnit(
-	    new TransformedUnit<Mass>(KILOGRAM, new MultiplyConverter(1.660538782E-27)), "Unified atomic mass", "u",
+	    new TransformedUnit<Mass>(KILOGRAM,
+	            MultiplyConverter.ofDouble(1.660538782E-27)), "Unified atomic mass", "u",
 	    true);
     // CODATA 2006 - http://physics.nist.gov/cuu/Constants/codata.pdf
 
@@ -249,7 +263,7 @@ public final class SI extends Units {
      * known exactly.
      */
     public static final Unit<Length> ASTRONOMICAL_UNIT = addUnit(
-	    new TransformedUnit<Length>(METRE, new MultiplyConverter(149597871000.0)));
+	    new TransformedUnit<Length>(METRE, MultiplyConverter.ofDouble(149597871000.0)));
     // Best estimate source: http://maia.usno.navy.mil/NSFA/CBE.html
 
     /**
@@ -257,7 +271,7 @@ public final class SI extends Units {
      * <code>rev</code>).
      */
     public static final Unit<Angle> REVOLUTION = addUnit(
-	    new TransformedUnit<Angle>(RADIAN, PowerOfPiConverter.of(1).concatenate(new RationalConverter(2, 1))));
+	    new TransformedUnit<Angle>(RADIAN, MultiplyConverter.ofPiToThePowerOf(1).concatenate(MultiplyConverter.ofRational(2, 1))));
 
     
     ///////////////////////////
